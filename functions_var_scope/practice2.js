@@ -1,10 +1,11 @@
-let a = 'outer';
-
-function testScope() {
-  let a = 'inner';
-  console.log(a);
+var qux = 2;
+function foo() {
+  var qux = 1;
+  bar();
 }
 
-console.log(a);
-testScope();
-console.log(a);
+function bar() {
+  console.log(qux);
+}
+
+foo();  // logs 1

@@ -1,8 +1,15 @@
 function logMultiples(n) {
-  let counter = n;
-  while (counter <= 100) {
-    console.log(counter);
-    counter += n;
+  let counter = 100;
+  counter = counter - (counter % n);
+
+  while (counter >= n) {
+    if (counter % 2 == 0) {
+      counter -= n;
+      continue;
+    } else {
+      console.log(counter);
+      counter -= n;
+    }
   }
 }
 

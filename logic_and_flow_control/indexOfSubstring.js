@@ -15,16 +15,14 @@ function indexOf(firstString, secondString) {
 
 function lastIndexOf(firstString, secondString) {
   let startIdx;
-  let totalIdx = 0;
+  let totalIdx = 1;
   while (indexOf(firstString, secondString) != -1) {
     startIdx = indexOf(firstString, secondString);
     totalIdx += startIdx;
 
     let newStr = '';
-    for (let i = 0; i < firstString.length; i++) {
-      if (i < startIdx || i >= startIdx + secondString.length) {
-        newStr += firstString[i];
-      }
+    for (let i = startIdx + 1; i < firstString.length; i++) {
+      newStr += firstString[i];
     }
 
     firstString = newStr;

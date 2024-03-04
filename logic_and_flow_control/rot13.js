@@ -1,18 +1,27 @@
+const ASCII_LOWERCASE_A_ORD = 97;
+const ASCII_UPPERCASE_A_ORD = 65;
+
 function rot13(string) {
   let rotatedString = '';
   for (let idx = 0; idx < string.length; idx++) {
     let char = string[idx];
-    if (/[a-zA-Z]/.match(char)) {
-      let asciiNumeric = char.charCodeAt(0);
-      if (/[a-z]/.match(char) {
 
-      }
-      (asciiNumeric = asciiNumeric + 17 < 97 ? asciiNumeric + 17)
+    let asciiNumeric;
+    if (char.match(/[a-z]/)) {
+      asciiNumeric = char.charCodeAt(0);
+      // From char ASCII order beyond 'a', add 13 but rotate it back to 0 if >= 26 letters
+      asciiNumeric = (ASCII_LOWERCASE_A_ORD + (((asciiNumeric - ASCII_LOWERCASE_A_ORD) + 13) % 26));
+    } else if (char.match(/[A-Z]/)) {
+      asciiNumeric = char.charCodeAt(0);
+      // From char ASCII order beyond 'A', add 13 but rotate it back to 0 if >= 26 letters
+      asciiNumeric = (ASCII_UPPERCASE_A_ORD + (((asciiNumeric - ASCII_UPPERCASE_A_ORD) + 13) % 26));
+    }
 
-    } else {
-      rotatedString += string[idx]
-    };
+    // Ternary operation depending on if asciiNumber was assigned a value
+    rotatedString += (asciiNumeric ? String.fromCharCode(asciiNumeric) : string[idx]);
   }
+
+  return rotatedString;
 }
 
 console.log(rot13('Teachers open the door, but you must enter by yourself.'));

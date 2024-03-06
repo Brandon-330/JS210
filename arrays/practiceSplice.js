@@ -1,14 +1,12 @@
 function splice(array, startIdx, spliceLength) {
-  let returnArray = [];
+  let returnArray = array.slice(startIdx, startIdx + spliceLength);
   
   let val;
   for (let idx = 0; idx < array.length; idx++) {
-    if (idx >= startIdx) {
-      val = array[0];
-      returnArray.push(val);
-    } else if (idx + spliceLength < startIdx + spliceLength) {
-      val = array[array.length - 1]
-      returnArray.push(val);
+    if (idx >= startIdx && idx < startIdx + spliceLength) {
+      
+    } else {
+
     }
   }
 

@@ -1,5 +1,5 @@
 function randomizer(a, b) {
-  if (a > b)return undefined
+  if (a > b) return undefined
   return Math.random() * (b - a) + a
 }
 

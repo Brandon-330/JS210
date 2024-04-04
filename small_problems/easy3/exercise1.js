@@ -1,3 +1,10 @@
-let age = Math.round((20 + (Math.random() * 200)));
+function concatenate(string1, string2) {
+  if (string2) {
+    return string1 + string2;
+  } else {
+    return 'foo' + string1;
+  }
+}
 
-console.log(`Teddy is ${age} years old!`);
+console.log(concatenate('aaa'));
+console.log

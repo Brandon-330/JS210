@@ -1,42 +1,45 @@
 /*
 ### Problem
-## Input: Integer
-## Output: Array (of lights that are on after n repetitions)
+## Input: Number
+## Output: Array
 
-### Rules
-# Every round, go through array based on round number
+## Rules
+# Explicit:
+  - Bank of switches, 1 through n
+  - Every round, you switch the lights on/off based on round number
+  - Ultimately, return the array of numbers that are on after n repetitions
 
-# Lights are 1 indexed
+# Implicit:
+  - Is n ever 0 or less than 0?
+  - Is n inclusive?
 
 ### Data Structure
-  - Create the array through a for loop
-  - The array will be all boolean values
-  
+# Create a for loop and fill an empty array, all with switches and a boolean value
+# Create a for loop to determine round number, this round number must be less than or equal to n, increasing by round number
+
+### Algortihm
+# Create a for loop and populate an empty array with a nested array
+  - Nested array to include switch# and on/off status
+# Create an outer for loop to determine round number
+# Create an index for loop that is less than or equal to n, incrementing by round number
+  - Mutate the array by switching on/off switch 
+# Ultimately use filter function to only pick the inner arrays that are on
+  - Use map to only receive back the first number of inner array
 */
 
 function lightsOn(switches) {
-  let switchesArr = [];
-  for (let idx = 0; idx < switches; idx += 1) {
-    switchesArr.push(true);
+  let switchBank = [];
+  for (let counter = 1; counter <= switches; counter += 1) {
+    switchBank.push([counter, false]);
   }
-  // Case for n = 1 already taken care of, time for round 2
 
-  for (let round = 2; round <= switches; round += 1) {
-    for (let idx = round; idx <= switches; idx += round) {
-      switchesArr[idx - 1] = !switchesArr[idx - 1];
+  for (let round = 1; round <= switches; round += 1) {
+    for (let idx = round - 1; idx < switchBank.length; idx += round) {
+      switchBank[idx][1] = !switchBank[idx][1];
     }
   }
 
-  let idx = 0;
-  switchesArr = switchesArr.map(el => {
-    idx += 1;
-    if (el) {
-      return idx;
-    } else {
-      return el;
-    }
-  });
-  return switchesArr.filter(el => el);
+  return switchBank.filter(innerArray => innerArray[1]).map(innerArray => innerArray[0]);
 }
 
 console.log(lightsOn(5));        // [1, 4]
